@@ -39,8 +39,9 @@ const MapUnico = () => {
               maxzoom: 22,
             },
           ],
-        }, // style URL        center: [-58.45, -34.59], // starting position [lng, lat]
-        zoom: 3, // starting zoom
+        }, // style URL        
+        center: [-58.45, -34.62], // starting position [lng, lat]
+        zoom: 12, // starting zoom
       })
     );
   }, []);
@@ -48,7 +49,7 @@ const MapUnico = () => {
   return (
     <div>
       <div style={{ height: "100vh" }} id="mapContainer"></div>
-      {/* {map && <MarkerComponent map={map} />} */}
+      {map && <MarkerComponent map={map} />}
       {map && <Route map={map} />}
     </div>
   );
