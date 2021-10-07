@@ -32,7 +32,7 @@ const MapUnico = () => {
           },
           layers: [
             {
-              id: "simple-tiles",
+              id: "simple-capa1",
               type: "raster",
               source: "capabase_1",
               minzoom: 0,
@@ -40,6 +40,17 @@ const MapUnico = () => {
               layout: {
                 // Haz que la capa sea visible por defecto.
                 'visibility': 'visible',
+              }
+            },
+            {
+              id: "simple-capa2",
+              type: "raster",
+              source: "capabase_2",
+              minzoom: 0,
+              maxzoom: 22,
+              layout: {
+                // Haz que la capa sea visible por defecto.
+                'visibility': 'none',
               }
             },
           ],
@@ -57,19 +68,13 @@ const MapUnico = () => {
       {map && <Route map={map} />}
     
       {map && <button onClick={() => {
-          const visibility = map.getLayoutProperty(
-            "simple-tiles",
-            'visibility',
-            );
-            console.log(visibility)
+          const visibility = map.getLayoutProperty('simple-capa1','visibility',);
             if (visibility === 'visible') {
-              map.setLayoutProperty("simple-tiles", 'visibility', 'none')
-            } else {
-              map.setLayoutProperty(
-                "simple-tiles",
-              'visibility',
-              'visible'
-              );
+              map.setLayoutProperty('simple-capa1', 'visibility', 'none')
+              map.setLayoutProperty('simple-capa2', 'visibility', 'visible')
+              } else {
+              map.setLayoutProperty('simple-capa1','visibility','visible' );
+              map.setLayoutProperty('simple-capa2','visibility','none') 
               }
           }}>
           
