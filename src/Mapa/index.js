@@ -76,7 +76,7 @@ const MapUnico = () => {
 
   return (
     <div>
-      <div style={{ height: "93h" }} id="mapContainer"></div>
+      <div style={{ height: "93vh" }} id="mapContainer"></div>
       {map && <MarkerComponent map={map} />}
       {map && <Route map={map} />}
 
