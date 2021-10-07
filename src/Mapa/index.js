@@ -5,6 +5,19 @@ import Route from "../Route";
 
 const MapUnico = () => {
   const [map, setMap] = useState(null);
+  const [visibility, setVisibility] = useState(false);
+
+  const change = () => {
+    if (visibility === false) {
+      map.setLayoutProperty("simple-capa1", "visibility", "none");
+      map.setLayoutProperty("simple-capa2", "visibility", "visible");
+    } else {
+      map.setLayoutProperty("simple-capa1", "visibility", "visible");
+      map.setLayoutProperty("simple-capa2", "visibility", "none");
+    }
+    setVisibility(!visibility);
+  };
+
   useEffect(() => {
     setMap(
       new Map({
@@ -39,8 +52,8 @@ const MapUnico = () => {
               maxzoom: 22,
               layout: {
                 // Haz que la capa sea visible por defecto.
-                'visibility': 'visible',
-              }
+                visibility: "visible",
+              },
             },
             {
               id: "simple-capa2",
@@ -50,11 +63,11 @@ const MapUnico = () => {
               maxzoom: 22,
               layout: {
                 // Haz que la capa sea visible por defecto.
-                'visibility': 'none',
-              }
+                visibility: "none",
+              },
             },
           ],
-        }, // style URL        
+        }, // style URL
         center: [-58.45, -34.62], // starting position [lng, lat]
         zoom: 12, // starting zoom
       })
@@ -63,26 +76,20 @@ const MapUnico = () => {
 
   return (
     <div>
-      <div style={{ height: "100vh" }} id="mapContainer"></div>
+      <div style={{ height: "93h" }} id="mapContainer"></div>
       {map && <MarkerComponent map={map} />}
       {map && <Route map={map} />}
-    
-      {map && <button onClick={() => {
-          const visibility = map.getLayoutProperty('simple-capa1','visibility',);
-            if (visibility === 'visible') {
-              map.setLayoutProperty('simple-capa1', 'visibility', 'none')
-              map.setLayoutProperty('simple-capa2', 'visibility', 'visible')
-              } else {
-              map.setLayoutProperty('simple-capa1','visibility','visible' );
-              map.setLayoutProperty('simple-capa2','visibility','none') 
-              }
-          }}>
-          
-              Cambiar capa
-          </button>
-}
+
+      {map && (
+        <button
+          onClick={() => {
+            change();
+          }}
+        >
+          {visibility ? <p>Capa_2</p> : <p>Capa_1</p>}
+        </button>
+      )}
     </div>
-  
   );
 };
 
