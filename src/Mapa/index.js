@@ -37,6 +37,10 @@ const MapUnico = () => {
               source: "capabase_1",
               minzoom: 0,
               maxzoom: 22,
+              layout: {
+                // Haz que la capa sea visible por defecto.
+                'visibility': 'visible',
+              }
             },
           ],
         }, // style URL        
@@ -51,7 +55,29 @@ const MapUnico = () => {
       <div style={{ height: "100vh" }} id="mapContainer"></div>
       {map && <MarkerComponent map={map} />}
       {map && <Route map={map} />}
+    
+      {map && <button onClick={() => {
+          const visibility = map.getLayoutProperty(
+            "simple-tiles",
+            'visibility',
+            );
+            console.log(visibility)
+            if (visibility === 'visible') {
+              map.setLayoutProperty("simple-tiles", 'visibility', 'none')
+            } else {
+              map.setLayoutProperty(
+                "simple-tiles",
+              'visibility',
+              'visible'
+              );
+              }
+          }}>
+          
+              Cambiar capa
+          </button>
+}
     </div>
+  
   );
 };
 
