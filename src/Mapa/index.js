@@ -89,6 +89,7 @@ const MapUnico = () => {
           {visibility ? <p>Capa_2</p> : <p>Capa_1</p>}
         </button>
       )}
+      <pre id="coordinates" className="coordinates"></pre>
     </div>
   );
 };
