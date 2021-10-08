@@ -6,13 +6,6 @@ const MarkerComponent = ({ map }) => {
   const coordinates = document.getElementById("coordinates");
 
   useEffect(() => {
-    const onDragEnd = () => {
-      const lngLat = marker.getLngLat();
-      console.log("ffffffff", lngLat)
-      coordinates.style.display = "block";
-      coordinates.innerHTML =
-        "Longitude: " + lngLat.lng + "<br />Latitude: " + lngLat.lat;
-    };
     setMarker(
       new Marker({
         draggable: true,
@@ -20,13 +13,23 @@ const MarkerComponent = ({ map }) => {
         .setLngLat([-58.45, -34.59])
         .addTo(map)
     );
-      if(marker != null ) {
-        marker.on("dragend", onDragEnd);
-      }
-    
-
     //new Marker().setLngLat([-58.45, -34.59]).addTo(map);
-  }, [map, marker]);
+  }, [map]);
+
+  useEffect(() => {
+    
+    const onDragEnd = () => {
+      const lngLat = marker.getLngLat();
+      coordinates.style.display = "block";
+      coordinates.innerHTML =
+        "Longitude: " + lngLat.lng + "<br />Latitude: " + lngLat.lat;
+    };
+    
+    if(marker != null ) {
+      marker.on("dragend", onDragEnd);
+    }
+
+  }, [marker])
 
   return null;
 };
