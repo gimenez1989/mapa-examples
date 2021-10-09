@@ -1,5 +1,5 @@
 import React from "react";
-import Map from "./Mapa/index/style";
+import Map from "./Mapa/index";
 import "./App.css";
 
 function App() {
